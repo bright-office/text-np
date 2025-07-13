@@ -1,0 +1,38 @@
+# Cloudflare Pages configuration
+name = "nepali-textbox-demo"
+compatibility_date = "2024-01-01"
+
+[env.production]
+# Production environment configuration
+
+# Build configuration
+build = { command = "npm run build", cwd = ".", watch_dir = "src" }
+
+# Output directory after build
+pages_build_output_dir = "dist"
+
+# Custom headers for static assets
+[[env.production.headers]]
+for = "/*"
+[env.production.headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[env.production.headers]]
+for = "/assets/*"
+[env.production.headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML files - short cache for updates
+[[env.production.headers]]
+for = "*.html"
+[env.production.headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+# Support for client-side routing (SPA)
+[[env.production.redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

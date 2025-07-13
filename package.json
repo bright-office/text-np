@@ -3,12 +3,14 @@
   "private": false,
   "version": "0.0.1",
   "description": "A React TypeScript component for real-time conversion of romanized Nepali text to Unicode Nepali",
-    "type": "module",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler pages deploy dist"
+
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -25,6 +27,7 @@
     "globals": "^16.3.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "wrangler": "^4.24.3"
   }
 }
